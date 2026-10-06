@@ -1,0 +1,17 @@
+{
+  "name": "pole-watch-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Pole Watch - rural electricity pole complaint system",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "multer": "^2.0.1",
+    "nanoid": "^3.3.7"
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "PW-2026-GANG-05",
+    "phone": "9123456780",
+    "villagerName": "Venkatesh Prasad",
+    "audioUrl": "/uploads/sample-audio-ganguru.wav",
+    "lat": 16.5402,
+    "lng": 80.621,
+    "note": "Temporary bamboo support used for power line across Panchayat main road. High risk of wire snap during tractor and harvester movement.",
+    "status": "Verified",
+    "createdAt": 1791241997390,
+    "updatedAt": 1791249197390
+  }
+]
