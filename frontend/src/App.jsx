@@ -177,17 +177,6 @@ function Home({ onPick }) {
         </button>
       </div>
 
-      <div className="mx-6 mt-6 p-4 rounded-2xl text-xs" style={{ background: C.surface, border: `1.5px dashed ${C.line}`, color: C.muted }}>
-        <div className="font-bold text-xs mb-1.5 flex items-center gap-1.5" style={{ color: C.ink }}>
-          <Zap size={14} color={C.amberDark} /> CSP Project Demonstration Info:
-        </div>
-        <div className="flex flex-col gap-1">
-          <div><span className="font-semibold" style={{ color: C.ink }}>Villager Login:</span> Ramesh Kumar (<span className="font-mono font-bold" style={{ color: C.ink }}>9848012345</span>) or any 10-digit number</div>
-          <div><span className="font-semibold" style={{ color: C.ink }}>Department Sign-in:</span> Password is <span className="font-mono font-bold" style={{ color: C.ink }}>gridadmin</span></div>
-          <div><span className="font-semibold" style={{ color: C.ink }}>Features:</span> Audio playback, real GPS pinning, status lifecycle & CSV report export</div>
-        </div>
-      </div>
-
       <p className="text-xs text-center mt-6 px-6" style={{ color: C.grey }}>
         Connected to backend at {api.base}
       </p>
