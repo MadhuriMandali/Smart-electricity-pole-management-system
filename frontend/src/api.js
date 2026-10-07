@@ -1,17 +1,6 @@
-```js
 // api.js
-
 // ============================================================
 // API BASE URL
-// ============================================================
-// Local development:
-// VITE_API_URL=http://localhost:4000
-//
-// Production:
-// VITE_API_URL=https://your-backend-domain.com
-//
-// Create a .env file in your frontend project:
-// VITE_API_URL=http://localhost:4000
 // ============================================================
 
 const API_BASE = (
@@ -19,648 +8,441 @@ const API_BASE = (
 ).replace(/\/+$/, "");
 
 // ============================================================
-// SAMPLE AUDIO
+// LOCAL STORAGE KEYS
 // ============================================================
 
-const SAMPLE_AUDIO_BEEP =
-  "data:audio/wav;base64,UklGRmACAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVoCAACBhYqFbF1fdJivrJBhNjVgodDbq2EcHCek2/LDn184M3m41OG9jWcxH2O0zN/DpmM6H2Csx9vCqG9DHHmxwtnCtHhPG3mrwNfGtn9VHHGkvNXFt4FfIWmct8/CvohkKGmTuMzBw4tpLTNjj7fBw4xrLzRfhbO/xYptMC5ZgLDCw41tLy5VfbC+xIxrMDFFb665v4hrLy9EbKu2u4hrLS5BbKe0uYdqLy4+a6WytoaIKy05aKGttYeILCo0Z5+ssYOGKywrZZyqq4SDLScoY5elqIOELSAmYJGdn39/Kx8hXo2YlXt8JyEcW4ePj3V2IBsaV36GiXBpFRAPTXF9e2peDAg=";
+const VILLAGERS_KEY = "power_pole_villagers";
+const COMPLAINTS_KEY = "power_pole_complaints";
 
 // ============================================================
-// DEFAULT VILLAGERS
+// DEFAULT DATA
 // ============================================================
 
 const DEFAULT_VILLAGERS = [
-  { name: "Ramesh Kumar", phone: "9848012345" },
-  { name: "Radha Devi", phone: "9440156789" },
-  { name: "Srinivasa Rao", phone: "9866234567" },
-  { name: "Lakshmi Narayana", phone: "9988776655" },
-  { name: "Venkatesh Prasad", phone: "9123456780" },
-  { name: "Anitha Kumari", phone: "9701234987" },
-];
-
-// ============================================================
-// DEFAULT COMPLAINTS
-// ============================================================
-
-const DEFAULT_COMPLAINTS = [
   {
-    id: "PW-2026-KANK-01",
-    phone: "9848012345",
-    villagerName: "Ramesh Kumar",
-    audioUrl: "/uploads/sample-audio-kankipadu.wav",
-    lat: 16.5186,
-    lng: 80.6199,
-    note:
-      "Pole #18 tilted precariously at 45 degrees after heavy rains near ZP High School. Exposed wires touching tree branches posing risk to school children.",
-    status: "Pending",
-    createdAt: Date.now() - 2 * 3600 * 1000,
-    updatedAt: Date.now() - 2 * 3600 * 1000,
+    id: "V001",
+    name: "Ravi Kumar",
+    phone: "9876543210",
+    village: "Rasapudipalem",
   },
-
   {
-    id: "PW-2026-GOSA-02",
-    phone: "9440156789",
-    villagerName: "Radha Devi",
-    audioUrl: "/uploads/sample-audio-gosala.wav",
-    lat: 16.5242,
-    lng: 80.6315,
-    note:
-      "Electric pole collapsed across lane near Primary Health Centre (PHC). Entire street pitch dark at night, elderly patients unable to reach clinic safely.",
-    status: "Verified",
-    createdAt: Date.now() - 26 * 3600 * 1000,
-    updatedAt: Date.now() - 24 * 3600 * 1000,
-  },
-
-  {
-    id: "PW-2026-PUNA-03",
-    phone: "9866234567",
-    villagerName: "Srinivasa Rao",
-    audioUrl: "/uploads/sample-audio-punadipadu.wav",
-    lat: 16.5091,
-    lng: 80.6421,
-    note:
-      "Missing pole gap on agricultural feeder route between Well #4 and distribution transformer. Sagging conductors hanging only 5 feet above field path.",
-    status: "Pending",
-    createdAt: Date.now() - 4 * 3600 * 1000,
-    updatedAt: Date.now() - 4 * 3600 * 1000,
-  },
-
-  {
-    id: "PW-2026-PROD-04",
-    phone: "9988776655",
-    villagerName: "Lakshmi Narayana",
-    audioUrl: "/uploads/sample-audio-proddutur.wav",
-    lat: 16.531,
-    lng: 80.6552,
-    note:
-      "Department deployed linemen team: New 9-meter pre-stressed concrete (PSC) pole successfully erected and LT distribution line re-tensioned.",
-    status: "Resolved",
-    createdAt: Date.now() - 72 * 3600 * 1000,
-    updatedAt: Date.now() - 70 * 3600 * 1000,
-  },
-
-  {
-    id: "PW-2026-GANG-05",
-    phone: "9123456780",
-    villagerName: "Venkatesh Prasad",
-    audioUrl: "/uploads/sample-audio-ganguru.wav",
-    lat: 16.5402,
-    lng: 80.621,
-    note:
-      "Temporary bamboo support used for power line across Panchayat main road. High risk of wire snap during tractor and harvester movement.",
-    status: "Verified",
-    createdAt: Date.now() - 16 * 3600 * 1000,
-    updatedAt: Date.now() - 14 * 3600 * 1000,
-  },
-
-  {
-    id: "PW-2026-EDUP-06",
-    phone: "9701234987",
-    villagerName: "Anitha Kumari",
-    audioUrl: "/uploads/sample-audio-edupugallu.wav",
-    lat: 16.495,
-    lng: 80.608,
-    note:
-      "Request for dedicated pole inside private farmland compound. Junior engineer site inspection confirmed existing distribution pole is within 14 meters.",
-    status: "Rejected",
-    createdAt: Date.now() - 96 * 3600 * 1000,
-    updatedAt: Date.now() - 94 * 3600 * 1000,
+    id: "V002",
+    name: "Suresh",
+    phone: "9876543211",
+    village: "Rasapudipalem",
   },
 ];
+
+const DEFAULT_COMPLAINTS = [];
 
 // ============================================================
 // LOCAL STORAGE HELPERS
 // ============================================================
 
-function getLocalComplaints() {
+function getVillagers() {
   try {
-    const raw = localStorage.getItem("pw-complaints-db");
+    const data = localStorage.getItem(VILLAGERS_KEY);
 
-    if (!raw) {
+    if (!data) {
       localStorage.setItem(
-        "pw-complaints-db",
-        JSON.stringify(DEFAULT_COMPLAINTS)
-      );
-
-      return DEFAULT_COMPLAINTS;
-    }
-
-    return JSON.parse(raw);
-  } catch (error) {
-    console.error("Unable to read local complaints:", error);
-    return DEFAULT_COMPLAINTS;
-  }
-}
-
-function saveLocalComplaints(list) {
-  try {
-    localStorage.setItem(
-      "pw-complaints-db",
-      JSON.stringify(list)
-    );
-  } catch (error) {
-    console.error("Unable to save local complaints:", error);
-  }
-}
-
-function getLocalVillagers() {
-  try {
-    const raw = localStorage.getItem("pw-villagers-db");
-
-    if (!raw) {
-      localStorage.setItem(
-        "pw-villagers-db",
+        VILLAGERS_KEY,
         JSON.stringify(DEFAULT_VILLAGERS)
       );
 
       return DEFAULT_VILLAGERS;
     }
 
-    return JSON.parse(raw);
+    return JSON.parse(data);
   } catch (error) {
-    console.error("Unable to read local villagers:", error);
+    console.error("Error reading villagers:", error);
     return DEFAULT_VILLAGERS;
   }
 }
 
-function saveLocalVillagers(list) {
+function saveVillagers(villagers) {
   try {
     localStorage.setItem(
-      "pw-villagers-db",
-      JSON.stringify(list)
+      VILLAGERS_KEY,
+      JSON.stringify(villagers)
     );
   } catch (error) {
-    console.error("Unable to save local villagers:", error);
+    console.error("Error saving villagers:", error);
+  }
+}
+
+function getComplaints() {
+  try {
+    const data = localStorage.getItem(COMPLAINTS_KEY);
+
+    if (!data) {
+      localStorage.setItem(
+        COMPLAINTS_KEY,
+        JSON.stringify(DEFAULT_COMPLAINTS)
+      );
+
+      return DEFAULT_COMPLAINTS;
+    }
+
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("Error reading complaints:", error);
+    return DEFAULT_COMPLAINTS;
+  }
+}
+
+function saveComplaints(complaints) {
+  try {
+    localStorage.setItem(
+      COMPLAINTS_KEY,
+      JSON.stringify(complaints)
+    );
+  } catch (error) {
+    console.error("Error saving complaints:", error);
   }
 }
 
 // ============================================================
-// API RESPONSE HANDLER
+// API REQUEST HELPER
 // ============================================================
 
-async function handleResponse(response) {
+async function apiRequest(endpoint, options = {}) {
+  const url = `${API_BASE}${endpoint}`;
+
+  const response = await fetch(url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...(options.headers || {}),
+    },
+  });
+
+  let data = null;
+
+  try {
+    data = await response.json();
+  } catch {
+    data = null;
+  }
+
   if (!response.ok) {
-    let message = `Request failed (${response.status})`;
-
-    try {
-      const body = await response.json();
-
-      if (body?.error) {
-        message = body.error;
-      }
-    } catch {
-      // Response was not JSON.
-    }
-
-    throw new Error(message);
+    throw new Error(
+      data?.message ||
+      data?.error ||
+      `Request failed with status ${response.status}`
+    );
   }
 
-  return response.json();
+  return data;
 }
 
 // ============================================================
-// AUDIO
+// VILLAGER API
 // ============================================================
 
-function blobToDataUrl(blob) {
-  return new Promise((resolve) => {
-    if (!blob) {
-      resolve("");
-      return;
+export async function upsertVillager(villager) {
+  try {
+    return await apiRequest("/api/villagers", {
+      method: "POST",
+      body: JSON.stringify(villager),
+    });
+  } catch (error) {
+    console.warn(
+      "API unavailable. Saving villager locally.",
+      error
+    );
+
+    const villagers = getVillagers();
+
+    const existingIndex = villagers.findIndex(
+      (item) =>
+        item.phone === villager.phone ||
+        item.id === villager.id
+    );
+
+    if (existingIndex >= 0) {
+      villagers[existingIndex] = {
+        ...villagers[existingIndex],
+        ...villager,
+      };
+    } else {
+      villagers.push({
+        ...villager,
+        id:
+          villager.id ||
+          `V${Date.now()}`,
+      });
     }
 
-    const reader = new FileReader();
+    saveVillagers(villagers);
 
-    reader.onloadend = () => {
-      resolve(reader.result);
+    return villager;
+  }
+}
+
+// ============================================================
+// MY COMPLAINTS
+// ============================================================
+
+export async function myComplaints(phone) {
+  try {
+    const result = await apiRequest(
+      `/api/complaints/mine?phone=${encodeURIComponent(phone)}`
+    );
+
+    return Array.isArray(result)
+      ? result
+      : result?.complaints || [];
+  } catch (error) {
+    console.warn(
+      "API unavailable. Reading complaints locally.",
+      error
+    );
+
+    return getComplaints().filter(
+      (complaint) =>
+        complaint.phone === phone
+    );
+  }
+}
+
+// ============================================================
+// PENDING COUNT
+// ============================================================
+
+export async function pendingCount() {
+  try {
+    const result = await apiRequest(
+      "/api/complaints/pending-count"
+    );
+
+    if (typeof result === "number") {
+      return result;
+    }
+
+    return Number(
+      result?.count ||
+      result?.pendingCount ||
+      0
+    );
+  } catch (error) {
+    console.warn(
+      "API unavailable. Calculating pending count locally.",
+      error
+    );
+
+    return getComplaints().filter(
+      (complaint) =>
+        complaint.status === "Pending"
+    ).length;
+  }
+}
+
+// ============================================================
+// SUBMIT COMPLAINT
+// ============================================================
+
+export async function submitComplaint(complaint) {
+  try {
+    return await apiRequest("/api/complaints", {
+      method: "POST",
+      body: JSON.stringify(complaint),
+    });
+  } catch (error) {
+    console.warn(
+      "API unavailable. Saving complaint locally.",
+      error
+    );
+
+    const complaints = getComplaints();
+
+    const newComplaint = {
+      ...complaint,
+      id:
+        complaint.id ||
+        `C${Date.now()}`,
+      status:
+        complaint.status ||
+        "Pending",
+      createdAt:
+        complaint.createdAt ||
+        new Date().toISOString(),
     };
 
-    reader.readAsDataURL(blob);
-  });
+    complaints.push(newComplaint);
+
+    saveComplaints(complaints);
+
+    return newComplaint;
+  }
 }
 
 // ============================================================
-// API
+// ADMIN LOGIN
 // ============================================================
 
-export const api = {
-  base: API_BASE,
-
-  // ----------------------------------------------------------
-  // ADD / UPDATE VILLAGER
-  // ----------------------------------------------------------
-
-  async upsertVillager(name, phone) {
-    const cleanName = String(name || "").trim();
-    const cleanPhone = String(phone || "").trim();
-
-    if (!cleanName || !cleanPhone) {
-      throw new Error("Name and phone number are required.");
-    }
-
-    try {
-      const response = await fetch(
-        `${API_BASE}/api/villagers`,
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-            name: cleanName,
-            phone: cleanPhone,
-          }),
-        }
-      );
-
-      return await handleResponse(response);
-    } catch (error) {
-      console.warn(
-        "Backend unavailable. Using localStorage.",
-        error
-      );
-
-      const list = getLocalVillagers();
-
-      const existing = list.find(
-        (villager) => villager.phone === cleanPhone
-      );
-
-      if (existing) {
-        existing.name = cleanName;
-      } else {
-        list.push({
-          name: cleanName,
-          phone: cleanPhone,
-        });
+export async function adminLogin(credentials) {
+  try {
+    return await apiRequest(
+      "/api/admin/login",
+      {
+        method: "POST",
+        body: JSON.stringify(credentials),
       }
+    );
+  } catch (error) {
+    console.error(
+      "Admin login failed:",
+      error
+    );
 
-      saveLocalVillagers(list);
+    throw error;
+  }
+}
 
-      return {
-        name: cleanName,
-        phone: cleanPhone,
-      };
-    }
-  },
+// ============================================================
+// GET ALL COMPLAINTS
+// ============================================================
 
-  // ----------------------------------------------------------
-  // GET MY COMPLAINTS
-  // ----------------------------------------------------------
+export async function allComplaints() {
+  try {
+    const result = await apiRequest(
+      "/api/complaints"
+    );
 
-  async myComplaints(phone) {
-    const cleanPhone = String(phone || "").trim();
+    return Array.isArray(result)
+      ? result
+      : result?.complaints || [];
+  } catch (error) {
+    console.warn(
+      "API unavailable. Reading complaints locally.",
+      error
+    );
 
-    if (!cleanPhone) {
-      return [];
-    }
+    return getComplaints();
+  }
+}
 
-    try {
-      const response = await fetch(
-        `${API_BASE}/api/complaints/mine?phone=${encodeURIComponent(
-          cleanPhone
-        )}`
-      );
+// ============================================================
+// NEW COMPLAINT COUNT
+// ============================================================
 
-      return await handleResponse(response);
-    } catch (error) {
-      console.warn(
-        "Backend unavailable. Reading complaints locally.",
-        error
-      );
+export async function newCount(since) {
+  try {
+    const query = since
+      ? `?since=${encodeURIComponent(since)}`
+      : "";
 
-      const list = getLocalComplaints();
+    const result = await apiRequest(
+      `/api/complaints/new-count${query}`
+    );
 
-      return list
-        .filter((complaint) => complaint.phone === cleanPhone)
-        .sort((a, b) => b.createdAt - a.createdAt);
-    }
-  },
-
-  // ----------------------------------------------------------
-  // PENDING COUNT
-  // ----------------------------------------------------------
-
-  async pendingCount() {
-    try {
-      const response = await fetch(
-        `${API_BASE}/api/complaints/pending-count`
-      );
-
-      return await handleResponse(response);
-    } catch (error) {
-      console.warn(
-        "Backend unavailable. Calculating pending count locally.",
-        error
-      );
-
-      const list = getLocalComplaints();
-
-      return {
-        count: list.filter(
-          (complaint) => complaint.status === "Pending"
-        ).length,
-      };
-    }
-  },
-
-  // ----------------------------------------------------------
-  // SUBMIT COMPLAINT
-  // ----------------------------------------------------------
-
-  async submitComplaint({
-    phone,
-    villagerName,
-    lat,
-    lng,
-    note,
-    audioBlob,
-  }) {
-    const cleanPhone = String(phone || "").trim();
-    const cleanName = String(villagerName || "").trim();
-
-    if (!cleanPhone) {
-      throw new Error("Phone number is required.");
+    if (typeof result === "number") {
+      return result;
     }
 
-    if (!cleanName) {
-      throw new Error("Villager name is required.");
+    return Number(
+      result?.count ||
+      result?.newCount ||
+      0
+    );
+  } catch (error) {
+    console.warn(
+      "API unavailable. Calculating new complaint count locally.",
+      error
+    );
+
+    const complaints = getComplaints();
+
+    if (!since) {
+      return complaints.length;
     }
 
-    if (
-      lat === undefined ||
-      lat === null ||
-      lng === undefined ||
-      lng === null
-    ) {
-      throw new Error("Location is required.");
-    }
+    const sinceDate = new Date(since);
 
-    try {
-      const form = new FormData();
+    return complaints.filter(
+      (complaint) =>
+        new Date(
+          complaint.createdAt
+        ) > sinceDate
+    ).length;
+  }
+}
 
-      form.append("phone", cleanPhone);
-      form.append("villagerName", cleanName);
-      form.append("lat", String(lat));
-      form.append("lng", String(lng));
-      form.append("note", note ? String(note).trim() : "");
+// ============================================================
+// UPDATE COMPLAINT STATUS
+// ============================================================
 
-      if (audioBlob) {
-        form.append(
-          "audio",
-          audioBlob,
-          "recording.webm"
-        );
+export async function updateStatus(
+  complaintId,
+  status
+) {
+  try {
+    return await apiRequest(
+      `/api/complaints/${encodeURIComponent(
+        complaintId
+      )}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          status,
+        }),
       }
+    );
+  } catch (error) {
+    console.warn(
+      "API unavailable. Updating complaint locally.",
+      error
+    );
 
-      const response = await fetch(
-        `${API_BASE}/api/complaints`,
-        {
-          method: "POST",
-          body: form,
-        }
-      );
+    const complaints = getComplaints();
 
-      return await handleResponse(response);
-    } catch (error) {
-      console.warn(
-        "Backend unavailable. Saving complaint locally.",
-        error
-      );
+    const index = complaints.findIndex(
+      (complaint) =>
+        complaint.id === complaintId
+    );
 
-      const audioUrl = audioBlob
-        ? await blobToDataUrl(audioBlob)
-        : SAMPLE_AUDIO_BEEP;
-
-      const complaint = {
-        id:
-          "PW-" +
-          Date.now().toString(36).toUpperCase() +
-          Math.floor(Math.random() * 900 + 100),
-
-        phone: cleanPhone,
-
-        villagerName: cleanName,
-
-        audioUrl: audioUrl || SAMPLE_AUDIO_BEEP,
-
-        lat: Number.parseFloat(lat),
-
-        lng: Number.parseFloat(lng),
-
-        note: note ? String(note).trim() : "",
-
-        status: "Pending",
-
-        createdAt: Date.now(),
-
-        updatedAt: Date.now(),
-      };
-
-      const list = getLocalComplaints();
-
-      list.push(complaint);
-
-      saveLocalComplaints(list);
-
-      return complaint;
-    }
-  },
-
-  // ----------------------------------------------------------
-  // ADMIN LOGIN
-  // ----------------------------------------------------------
-  //
-  // IMPORTANT:
-  // Do NOT put the real admin password in frontend code.
-  // Authentication should happen on the backend.
-  // ----------------------------------------------------------
-
-  async adminLogin(password) {
-    if (!password) {
-      throw new Error("Password is required.");
-    }
-
-    try {
-      const response = await fetch(
-        `${API_BASE}/api/admin/login`,
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-            password,
-          }),
-        }
-      );
-
-      return await handleResponse(response);
-    } catch (error) {
-      console.error("Admin login failed:", error);
-
+    if (index === -1) {
       throw new Error(
-        "Unable to connect to the server. Please try again."
+        "Complaint not found"
       );
     }
-  },
 
-  // ----------------------------------------------------------
-  // GET ALL COMPLAINTS
-  // ----------------------------------------------------------
+    complaints[index] = {
+      ...complaints[index],
+      status,
+      updatedAt:
+        new Date().toISOString(),
+    };
 
-  async allComplaints(token) {
-    if (!token) {
-      throw new Error("Admin authentication token is required.");
-    }
+    saveComplaints(complaints);
 
-    try {
-      const response = await fetch(
-        `${API_BASE}/api/complaints`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    return complaints[index];
+  }
+}
 
-      return await handleResponse(response);
-    } catch (error) {
-      console.warn(
-        "Backend unavailable. Reading complaints locally.",
-        error
-      );
+// ============================================================
+// AUDIO URL
+// ============================================================
 
-      const list = getLocalComplaints();
+export function audioUrl(path) {
+  if (!path) {
+    return "";
+  }
 
-      return [...list].sort(
-        (a, b) => b.createdAt - a.createdAt
-      );
-    }
-  },
+  if (
+    path.startsWith("http://") ||
+    path.startsWith("https://") ||
+    path.startsWith("blob:") ||
+    path.startsWith("data:")
+  ) {
+    return path;
+  }
 
-  // ----------------------------------------------------------
-  // NEW COMPLAINT COUNT
-  // ----------------------------------------------------------
+  return `${API_BASE}${path.startsWith("/") ? "" : "/"}${path}`;
+}
 
-  async newCount(token, since) {
-    if (!token) {
-      throw new Error("Admin authentication token is required.");
-    }
+// ============================================================
+// EXPORT API BASE
+// ============================================================
 
-    try {
-      const response = await fetch(
-        `${API_BASE}/api/complaints/new-count?since=${encodeURIComponent(
-          since
-        )}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      return await handleResponse(response);
-    } catch (error) {
-      console.warn(
-        "Backend unavailable. Calculating count locally.",
-        error
-      );
-
-      const list = getLocalComplaints();
-
-      return {
-        count: list.filter(
-          (complaint) => complaint.createdAt > since
-        ).length,
-      };
-    }
-  },
-
-  // ----------------------------------------------------------
-  // UPDATE COMPLAINT STATUS
-  // ----------------------------------------------------------
-
-  async updateStatus(token, id, status) {
-    if (!token) {
-      throw new Error("Admin authentication token is required.");
-    }
-
-    if (!id) {
-      throw new Error("Complaint ID is required.");
-    }
-
-    if (!status) {
-      throw new Error("Complaint status is required.");
-    }
-
-    try {
-      const response = await fetch(
-        `${API_BASE}/api/complaints/${encodeURIComponent(id)}`,
-        {
-          method: "PATCH",
-
-          headers: {
-            "Content-Type": "application/json",
-
-            Authorization: `Bearer ${token}`,
-          },
-
-          body: JSON.stringify({
-            status,
-          }),
-        }
-      );
-
-      return await handleResponse(response);
-    } catch (error) {
-      console.warn(
-        "Backend unavailable. Updating complaint locally.",
-        error
-      );
-
-      const list = getLocalComplaints();
-
-      const index = list.findIndex(
-        (complaint) => complaint.id === id
-      );
-
-      if (index === -1) {
-        throw new Error("Complaint not found.");
-      }
-
-      list[index].status = status;
-      list[index].updatedAt = Date.now();
-
-      saveLocalComplaints(list);
-
-      return list[index];
-    }
-  },
-
-  // ----------------------------------------------------------
-  // AUDIO URL
-  // ----------------------------------------------------------
-
-  audioUrl(path) {
-    if (!path) {
-      return SAMPLE_AUDIO_BEEP;
-    }
-
-    if (
-      path.startsWith("data:") ||
-      path.startsWith("blob:") ||
-      path.startsWith("http://") ||
-      path.startsWith("https://")
-    ) {
-      return path;
-    }
-
-    return `${API_BASE}${path.startsWith("/") ? "" : "/"}${path}`;
-  },
-};
-```
+export { API_BASE };
