@@ -446,3 +446,15 @@ export function audioUrl(path) {
 // ============================================================
 
 export { API_BASE };
+export const api = {
+  upsertVillager,
+  myComplaints,
+  pendingCount,
+  submitComplaint,
+  adminLogin,
+  allComplaints,
+  newCount,
+  updateStatus,
+  audioUrl,
+  base: API_BASE,
+};
