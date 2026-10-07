@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 4000;
 
 // Prototype-only admin password. Change this and move it to a real secret
 // manager / env var before using this anywhere near production.
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "gridadmin";
-const ADMIN_TOKEN = process.env.ADMIN_TOKEN || "gridadmin-session-token";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "gridadmin@2026";
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || "pm-gridadmin-session-token";
 
 const UPLOADS_DIR = path.join(__dirname, "uploads");
 if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
