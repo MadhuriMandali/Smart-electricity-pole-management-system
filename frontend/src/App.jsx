@@ -177,9 +177,7 @@ function Home({ onPick }) {
         </button>
       </div>
 
-      <p className="text-xs text-center mt-6 px-6" style={{ color: C.grey }}>
-        Connected to backend at {api.base}
-      </p>
+    
     </div>
   );
 }
@@ -224,27 +222,6 @@ function VillagerLogin({ onBack, onLoggedIn }) {
         <label className="text-xs uppercase tracking-wide" style={{ color: C.muted }}>Phone number</label>
         <input value={phone} onChange={(e) => setPhone(e.target.value.replace(/[^\d+ ]/g, ""))} placeholder="e.g. 9876543210" inputMode="tel"
           className="w-full mt-1 mb-2 px-4 py-3 rounded-xl text-base" style={{ background: C.surface, border: `1.5px solid ${C.line}`, color: C.ink, fontFamily: "IBM Plex Mono, monospace" }} />
-        
-        <div className="mt-3 mb-2">
-          <span className="text-xs uppercase tracking-wide font-medium" style={{ color: C.muted }}>Quick demo profiles:</span>
-          <div className="flex gap-2 flex-wrap mt-1.5">
-            {[
-              { name: "Ramesh Kumar", phone: "9848012345" },
-              { name: "Radha Devi", phone: "9440156789" },
-              { name: "Srinivasa Rao", phone: "9866234567" },
-            ].map((p) => (
-              <button
-                key={p.phone}
-                type="button"
-                onClick={() => { setName(p.name); setPhone(p.phone); }}
-                className="px-2.5 py-1 rounded-lg text-xs font-medium transition"
-                style={{ background: phone === p.phone ? C.ink : C.surface, color: phone === p.phone ? "white" : C.ink, border: `1px solid ${C.line}` }}
-              >
-                {p.name}
-              </button>
-            ))}
-          </div>
-        </div>
 
         {error && <p className="text-sm mt-2 flex items-center gap-1.5" style={{ color: C.red }}><AlertTriangle size={14} /> {error}</p>}
         <button onClick={submit} disabled={busy} className="w-full mt-5 rounded-xl py-3.5 font-bold text-base" style={{ background: C.amber, color: C.navy, fontFamily: "Archivo, sans-serif" }}>
@@ -541,7 +518,6 @@ function AdminLogin({ onBack, onLoggedIn }) {
         <label className="text-xs uppercase tracking-wide" style={{ color: C.muted }}>Password</label>
         <input type="password" value={pw} onChange={(e) => setPw(e.target.value)} onKeyDown={(e) => e.key === "Enter" && submit()}
           className="w-full mt-1 mb-2 px-4 py-3 rounded-xl text-base" style={{ background: C.surface, border: `1.5px solid ${C.line}`, color: C.ink, fontFamily: "IBM Plex Mono, monospace" }} />
-        <p className="text-xs mb-2" style={{ color: C.grey, fontFamily: "IBM Plex Mono, monospace" }}>Demo password: gridadmin (set ADMIN_PASSWORD env var on the backend to change it)</p>
         {error && <p className="text-sm mt-2 flex items-center gap-1.5" style={{ color: C.red }}><AlertTriangle size={14} /> {error}</p>}
         <button onClick={submit} disabled={busy} className="w-full mt-6 rounded-xl py-3.5 font-bold text-base" style={{ background: C.ink, color: "white", fontFamily: "Archivo, sans-serif" }}>
           {busy ? "Signing in…" : "Sign in"}
