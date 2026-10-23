@@ -500,7 +500,7 @@ function AdminLogin({ onBack, onLoggedIn }) {
   async function submit() {
     setBusy(true); setError("");
     try {
-      const { token } = await api.adminLogin(pw);
+      const { token } = await api.adminLogin({ password: pw });;
       localStorage.setItem("pw-admin-token", token);
       onLoggedIn(token);
     } catch (e) {
