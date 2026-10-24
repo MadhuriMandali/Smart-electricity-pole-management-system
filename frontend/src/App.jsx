@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
   Zap, MapPin, Mic, Square, Play, Pause, CheckCircle2, XCircle, Clock3,
   LogOut, User, ShieldCheck, Plus, ArrowLeft, Loader2, AlertTriangle,
-  Trash2, RefreshCcw, Download, Search, FileText
+  Trash2, RefreshCcw, Download, Search
 } from "lucide-react";
 import { api } from "./api";
 
@@ -176,8 +176,6 @@ function Home({ onPick }) {
           <ShieldCheck size={22} color={C.ink} />
         </button>
       </div>
-
-    
     </div>
   );
 }
@@ -457,7 +455,7 @@ function VillagerDashboard({ villager, onLogout }) {
 
   return (
     <div className="min-h-screen pb-8" style={{ background: C.bg, fontFamily: "Inter, sans-serif" }}>
-      <TopBar title={`Hi, ${villager.name.split(" ")[0]}`} right={
+      <TopBar title={`Hi, ${(villager.name || "there").split(" ")[0]}`} right={
         <button onClick={onLogout} className="rounded-full p-2" style={{ background: C.surface }} aria-label="Log out"><LogOut size={16} color={C.ink} /></button>
       } />
       <div className="px-6">
@@ -500,7 +498,8 @@ function AdminLogin({ onBack, onLoggedIn }) {
   async function submit() {
     setBusy(true); setError("");
     try {
-      const { token } = await api.adminLogin({ password: pw });;
+      // The backend replies with { token: "..." }, so destructure it
+      const { token } = await api.adminLogin(pw);
       localStorage.setItem("pw-admin-token", token);
       onLoggedIn(token);
     } catch (e) {
@@ -539,8 +538,13 @@ function ComplaintCard({ c, onUpdate, isNew }) {
 
   async function setStatus(status) {
     setBusy(true);
-    await onUpdate(c.id, status);
-    setBusy(false);
+    try {
+      await onUpdate(c.id, status);
+    } catch (e) {
+      alert(e.message || "Could not update the status. Please try again.");
+    } finally {
+      setBusy(false);
+    }
   }
 
   function togglePlay() {
@@ -595,7 +599,7 @@ function AdminDashboard({ token, onLogout }) {
   const [complaints, setComplaints] = useState(null);
   const [filter, setFilter] = useState("All");
   const [search, setSearch] = useState("");
-  const [lastSeen, setLastSeen] = useState(() => parseInt(localStorage.getItem("pw-admin-last-seen") || "0", 10));
+  const [lastSeen] = useState(() => parseInt(localStorage.getItem("pw-admin-last-seen") || "0", 10));
   const [notifPermission, setNotifPermission] = useState(typeof Notification !== "undefined" ? Notification.permission : "unsupported");
   const notifiedIdsRef = useRef(new Set());
   const sessionStartRef = useRef(Date.now());
@@ -606,6 +610,7 @@ function AdminDashboard({ token, onLogout }) {
       setComplaints(all);
       return all;
     } catch (e) {
+      setComplaints((prev) => prev || []);
       return [];
     }
   }, [token]);
@@ -665,7 +670,7 @@ function AdminDashboard({ token, onLogout }) {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `CSP_Pole_Watch_Report_${new Date().toISOString().slice(0, 10)}.csv`);
+    link.setAttribute("download", `Pole_Watch_Report_${new Date().toISOString().slice(0, 10)}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -697,7 +702,7 @@ function AdminDashboard({ token, onLogout }) {
     <div className="min-h-screen pb-8" style={{ background: C.bg, fontFamily: "Inter, sans-serif" }}>
       <TopBar title="Complaints" right={
         <div className="flex items-center gap-2">
-          <button onClick={exportReportCSV} title="Export CSP Report to CSV" className="rounded-full px-3 py-1.5 flex items-center gap-1.5 text-xs font-semibold" style={{ background: C.ink, color: "white" }}>
+          <button onClick={exportReportCSV} title="Export report to CSV" className="rounded-full px-3 py-1.5 flex items-center gap-1.5 text-xs font-semibold" style={{ background: C.ink, color: "white" }}>
             <Download size={13} color={C.amber} /> Export CSV
           </button>
           <button onClick={refresh} className="rounded-full p-2" style={{ background: C.surface }} aria-label="Refresh"><RefreshCcw size={16} color={C.ink} /></button>
